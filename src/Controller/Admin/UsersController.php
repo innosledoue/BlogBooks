@@ -41,7 +41,7 @@ class UsersController extends AbstractController
             );
             $entityManager->persist($user);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Utilisateur crée avec succès');
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,7 +77,7 @@ class UsersController extends AbstractController
             );
 
             $entityManager->flush();
-
+            $this->addFlash('success', 'Utilisateur Modifié avec succès');
             return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -94,7 +94,7 @@ class UsersController extends AbstractController
             $entityManager->remove($user);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Utilisateur supprimé avec succès');
         return $this->redirectToRoute('app_admin_users_index', [], Response::HTTP_SEE_OTHER);
     }
 }

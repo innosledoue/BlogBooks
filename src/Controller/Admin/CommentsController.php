@@ -34,7 +34,7 @@ class CommentsController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($comment);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Commentaire crée avec succès');
             return $this->redirectToRoute('app_admin_comments_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -60,7 +60,7 @@ class CommentsController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
-
+            $this->addFlash('success', 'Commentaire modifié avec succès');
             return $this->redirectToRoute('app_admin_comments_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -77,7 +77,7 @@ class CommentsController extends AbstractController
             $entityManager->remove($comment);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Commentaire supprimé avec succès');
         return $this->redirectToRoute('app_admin_comments_index', [], Response::HTTP_SEE_OTHER);
     }
 }

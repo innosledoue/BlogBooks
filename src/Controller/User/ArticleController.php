@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/user/article')]
+#[Route('/article')]
 class ArticleController extends AbstractController
 {
     #[Route('/', name: 'app_user_article_index', methods: ['GET'])]
@@ -25,8 +25,10 @@ class ArticleController extends AbstractController
     #[Route('/{id}', name: 'app_user_article_show', methods: ['GET'])]
     public function show(Articles $article): Response
     {
+        
         return $this->render('user/article/show.html.twig', [
             'article' => $article,
+            'comments'=> $article->getComments()
         ]);
     }
 

@@ -32,7 +32,7 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($category);
             $entityManager->flush();
-
+            $this->addFlash('success', 'Catégorie crée avec succès !');
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -59,6 +59,8 @@ class CategoryController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'Catégorie modifié avec succès');
+
             return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
         }
 
@@ -75,7 +77,7 @@ class CategoryController extends AbstractController
             $entityManager->remove($category);
             $entityManager->flush();
         }
-
+        $this->addFlash('success', 'Catégorie supprimé avec succès');
         return $this->redirectToRoute('app_admin_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -21,5 +21,16 @@
             </tr>
         </tbody>
     </table>
-    <a href="{{ path('app_user_category_index') }}">back to list</a>
+    <div>
+
+        <a href="{{path('app_user_comments_new',{'id': article.id})}}"> Ajouter un commantaire </a>
+
+    </div>
+
+    <div>
+        {% for comment in comments %}
+            <div> {{ comment.user.email }} a dit :</div>
+            <div> {{ comment.content}} </div>
+        {% endfor %}
+    </div>
 {% endblock %}
